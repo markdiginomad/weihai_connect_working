@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+      <div class="well well_member_index well_tables">
+       <h1 class="member_top_h1_index_font_text">
+            Total Members Online </br>
+            Total Members Joined </br><br/>
+            
+            Members List
+        </h1>
+        
+       
+            <% @users.each do |user| %>
+          
+             <% if user.profile %>
+              <div class="container-fluid">
+                  <table class="table table-hover">
+                      <tbody>
+                         <tr>
+                          <td class="member_index_td_bottom_border">
+                  <%= image_tag user.profile.avatar.url(:thumb), class: 'user-show-avatar' %>
+                          </td>
+                          <td>
+                        
+       <%= content_tag :span, user.profile.first_name, class: "first_letter_cap" %> <%= user.profile.last_name %>
+                         </td>
+                          <td>
+                  <%= content_tag :span, user.profile.hometown, class: "first_letter_cap" %>
+                          </td>
+                          <td>
+                       
+                        <% if user_signed_in? %> 
+                        <%= link_to "View Profile", user, class: 'btn btn-success' %>
+                       <% else %>
+                        <%= link_to "View Profile", new_user_session_path, class: 'btn btn-success' %>
+                        <% end %>
+                       
+                          </td>
+                      </tr>
+                     </tbody>
+                  </table>
+                </div>
+             <% end %>
+            <% end %>
+ <%= will_paginate @users, renderer: BootstrapPagination::Rails, previous_label: "Previous", next_label: "More", inner_window: 1, outer_window: 0 %>
+          
+      </div>
+  </div>
+</div>
+
+

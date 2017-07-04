@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weihai Connect</title>
+ <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>  
+</head>
+<body>
+  
+<section>
+<header>
+  <div class="container-fluid">
+    
+    <div class="logo"><h2><%= link_to image_tag("whlog.png", alt: "WEIHAI CONNECT", width: "300px"), root_path, class: 'navbar-brand'%></h2>
+    </div>
+    
+    <form class="navbar-form navbar-right">
+        <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
+        <% if current_user %>
+          <%= link_to "SIGN OUT", destroy_user_session_path, class: 'btn btn-default navbar-btn', method: :delete %>
+        <% else %>
+          <%= link_to "SIGN UP", new_user_registration_path, class: 'btn btn-default navbar-btn', method: :get %>
+          <%= link_to "LOG IN", new_user_session_path, class: 'btn btn-default navbar-btn', method: :get %> 
+        <% end %>
+      
+        
+    </form>
+  </div>
+  
+  <div class="container-fluid container_fluid_shadow bluecolor">
+    
+    <nav class="site-nav">
+      <ul>
+        <li><%= link_to "MEMBERS", users_path, class: "link" %></li>
+        <li><%= link_to "GROUPS", "#", class: "link" %></li>
+        <li><%= link_to "FORUM", "#", class: "link" %></li>
+        <li><%= link_to "LISTINGS", "#", class: "link" %></li>
+        <li><%= link_to "REVIEWS", "#", class: "link" %></li>
+         <% if current_user %>
+         <li><%= link_to "MY PAGE", root_path, class: "link" %></li>
+        <% else %>
+        <li><%= link_to "CONTACT", new_contact_path, class: "link" %></li>
+        <% end %>
+      </ul>
+    </nav>
+    <div class="menu-toggle">
+      <div class="hamburger">
+      </div>
+    </div>
+    
+  </div>
+ </header>
+</section>
+
+<div class="container">
+  <% flash.each do |key, value| %> 
+    <%= content_tag :div, value, class: "alert alert-#{key}" %>
+  <% end %> 
+  
+<%= yield %>
+</div> 
+  
+  
+</body>
+</html>
+
+</html>

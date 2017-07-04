@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="well">
+       <% if user_signed_in? %>
+       <h2>
+       <%= current_user.profile.first_name %> please contact us with any issues about your account here or suggestions. We will be in touch with you afterwards as soon as possible.</h2>
+     <% else %>
+        Please contact us with any issues or suggestions. We will be in touch with you afterwards as soon as possible.</h1>
+     <% end %>
+        <%= form_for @contact do |f| %>
+    
+        <div class="form-group">
+          <%= f.label :name %> 
+          <%= f.text_field :name, class: 'form-control' %> 
+        </div>
+         
+        <div class="form-group">
+          <%= f.label :email %> 
+          <%= f.email_field :email, class: 'form-control' %>
+        </div>
+          
+        <div class="form-group">
+          <%= f.label :comments %> 
+          <%= f.text_area :comments, class: 'form-control' %>
+        </div>
+
+         <div class="form-group hidden">
+          <%= f.label :nickname %> 
+          <%= f.text_area :nickname, class: 'form-control', hint: 'leave this field blank' %>
+        </div>
+        
+        <%= f.submit 'Send Message', class: "font-color" %>
+        
+        <% end %>
+       </div>
+      </div>
+    </div>
+</div>

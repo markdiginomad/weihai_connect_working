@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="well">
+    <% if user_signed_in? %>
+      <h2>Thank you <%= current_user.profile.first_name %> for your message, will get in touch with you soon</h2>
+     <% else %>
+        <h2>Thank you for your message, will get in touch with you soon</h2>
+     <% end %>       
+    </div>
+  </div>
+</div>
+
